@@ -63,6 +63,7 @@ const connectMongoDB = async () => {
   }
 };
 
+
 app.listen(8800, () => {
   connectMongoDB();
   console.log("Server is running on port 8800");
@@ -73,4 +74,56 @@ app.listen(8800, () => {
 //to store data like connection string we can use .env file in backend use it for all over project
 
 install dotenv by npm see how  to use 
+
+//.env file
+# DATABSE URL
+# dont emclose withen ""/''quote
+MONGO_URL=mongodb+srv://admin:admin%401@cluster0.pdbgysg.mongodb.net/AuthDB
+
+// index.js
+
+import express from "express";
+import mongoose from "mongoose";
+
+import dotenv from "dotenv";
+dotenv.config();
+
+const app = express();
+
+
+// db connection
+const connectMongoDB = async () => {
+  try {
+
+    await mongoose.connect(process.env.MONGO_URL);
+
+    console.log("Connected to Database");
+  } catch (error) {
+    throw error;
+  }
+};
+
+app.listen(8800, () => {
+  connectMongoDB();
+  console.log("Server is running on port 8800");
+});
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+MVC Application
+model=>model
+view=>Angular
+controller=>logic
+
+
+//backend strecture
+controller
+utilitis
+model folder
+routes folder
+index.js
+
+//----------------------------------------------------------------
+
+
+
 
